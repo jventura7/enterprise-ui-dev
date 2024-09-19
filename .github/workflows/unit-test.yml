@@ -1,13 +1,13 @@
 name: Run Unit Tests
 
 on:
-  push: 
+  push:
     branches: [main]
   pull_request:
     branches: [main]
 
 jobs:
-  build-and-test:
+  unit-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,3 +16,13 @@ jobs:
         uses: actions/setup-node@v2
       - run: npm ci
       - run: npm test
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+      - run: npm ci
+      - run: npm run build
